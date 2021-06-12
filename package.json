@@ -1,0 +1,19 @@
+{
+  "name": "henry-huang",
+  "version": "1.8.2",
+  "description": "",
+  "main": "index.js",
+  "authors": {
+    "name": "Henry Huang",
+    "email": "henryhuang861219@gmail.com"
+  },
+  "scripts": {
+    "dev": "vuepress dev docs --open --no-clear-screen",
+    "build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/theme-blog": "^2.3.3",
+    "vuepress": "^1.8.2"
+  }
+}
