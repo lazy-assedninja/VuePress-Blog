@@ -19,3 +19,4 @@ git commit -m "deploy ${date}"
 git push -f git@github.com:henryhuang1219/henryhuang1219.github.io.git master
 
 cd -
+rm -rf docs/public
