@@ -60,7 +60,7 @@ from linebot.exceptions import LineBotApiError
 
 def bot(request):
     try:
-        # signature
+        # Signature
         signature = request.headers['X-Line-Signature']
         body = request.body.decode()
         web_hook_handler.handle(body, signature)
@@ -110,7 +110,7 @@ def echo(event):
 @web_hook_handler.add(FollowEvent)
 def handle_follow(event):
     try:
-        # send welcome message
+        # Send welcome message
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
@@ -120,16 +120,13 @@ def handle_follow(event):
         print(str(e))
     return HttpResponse("OK")
 
-
 @web_hook_handler.add(UnfollowEvent)
 def handle_un_follow(event):
-    # do something
-    
+    # Do something
     return HttpResponse("OK")
-
 ```
 
-再來，就是比較需要注意的監聽按鈕回傳值`PostbackEvent`，在這邊可先利用剛剛的鸚鵡機器人傳送一個有button且type為postback的Flex Message至聊天室中，以下直接取用Showcase中的模板進行測試
+再來，就是比較需要注意的監聽按鈕回傳值`PostbackEvent`，在這邊可先利用剛剛的鸚鵡機器人傳送一個有button且type為postback的Flex Message至聊天室中，以下直接取用官方提供的模板進行測試
 
 postback button中的action可自訂，但欄位不可作更改，alt_text欄位為聊天室之預覽訊息，將程式碼複製進前面所寫的`echo`功能中，並使之觸發
 ```python
