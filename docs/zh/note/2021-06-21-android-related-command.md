@@ -12,6 +12,8 @@ categories:
 Android 常用 Command 整合筆記。
 :::
 
+<!-- more -->
+
 ## Test
 * Unit Test
   ```bash
