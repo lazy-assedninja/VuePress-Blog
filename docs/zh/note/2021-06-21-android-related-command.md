@@ -1,0 +1,40 @@
+---
+title: Android - 相關 Command
+date: 2021-06-21
+tags:
+ - Fronted
+ - Android 
+categories:
+ - Note
+---
+
+::: tip
+Android 常用 Command 整合筆記。
+:::
+
+## Test
+* Unit Test
+  ```bash
+  ./gradlew test
+  ```
+
+* Instrumented Test
+  ```bash
+  ./gradlew connectedAndroidTest
+  ```
+
+## APK
+* 打包 Debug APK
+  ```bash
+  ./gradlew assembleDebug
+  ```
+
+* 打包 Release APK
+  ```bash
+  ./gradlew assembleRelease
+  ```
+
+* 分析 APK 使用的 method 數量
+  ```bash
+  dexcount ./app/build/outputs/apk/app-debug.apk
+  ```
