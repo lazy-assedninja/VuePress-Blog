@@ -1,5 +1,5 @@
 ---
-title: Python - 建立Line Bot聊天機器人
+title: Python - 建立 Line Bot 聊天機器人
 date: 2021-06-14
 tags:
  - Backend
@@ -10,42 +10,42 @@ categories:
 ---
 
 ::: tip
-由於Line Bot一般的Messaging API在電腦版上無法正常顯示，改為請使用者至手機上查看之替代文字呈現，因此這次Line Bot開發選擇可自訂排版且能在電腦版顯示之Flex Message。
-應用範例選擇使用大學專題所製作的WhatToEat APP，將少數與使用者關係較深且常用到之功能套用至Line Bot上。
+由於 Line Bot 一般的 Messaging API 在電腦版上無法正常顯示，改為請使用者至手機上查看之替代文字呈現，因此這次 Line Bot 開發選擇可自訂排版且能在電腦版顯示之 Flex Message。
+應用範例選擇使用大學專題所製作的 WhatToEat APP，將少數與使用者關係較深且常用到之功能套用至 Line Bot 上。
 :::
 
 <!-- more -->
 
 ## 建立Line官方帳號
-進入[LINE Developers](https://developers.line.biz/console/)，點擊Create按鈕新增Provider
+進入[LINE Developers](https://developers.line.biz/console/)，點擊 Create 按鈕新增 Provider
 ![Create Line Provider](https://i.imgur.com/pV1fyVq.png)
 
-進入Provider後，點擊Create a new channel，會跳出選擇channel type的視窗
+進入 Provider 後，點擊 Create a new channel，會跳出選擇 channel type 的視窗
 ![Create New Channel](https://i.imgur.com/1lSO1T6.png)
 
-選擇Messaging API選項，將資料填寫完畢後點擊Create，便完成了當前步驟。
+選擇 Messaging API 選項，將資料填寫完畢後點擊 Create，便完成了當前步驟。
 
 
 ## 設定Django環境並與Line官方帳號連結
 ::: tip
-以下將不會對Django建置多做敘述，如有需要請參考[官方文件](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
+以下將不會對 Django 建置多做敘述，如有需要請參考[官方文件](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
 :::
 
 安裝所需的套件`line-bot-sdk`
 ```bash
- pip3 install line-bot-sdk
+pip3 install line-bot-sdk
 ```
 
-進入剛新建的Channel中，點擊Messaging API
+進入剛新建的 Channel 中，點擊 Messaging API
 ![Messaging API](https://i.imgur.com/stwHQaQ.png)
 
-滑到底部後會看到Channel access token，點擊Issue(由於我已創建過token，所以顯示Reissue)
+滑到底部後會看到 Channel access token，點擊 Issue(由於我已創建過 token，所以顯示 Reissue)
 ![Channel access token](https://i.imgur.com/nRyFDeW.png)
 
-Channel Secret在Basic setting裡便可找到
+Channel Secret 在 Basic setting 裡便可找到
 ![Basic settings](https://i.imgur.com/KMzSf1q.png)
 
-取到Access token和Secret後，在views.py中加入Line Bot SDK所需之初始化宣告
+取到 Access token 和 Secret 後，在`views.py`中加入 Line Bot SDK 所需之初始化宣告
 ```python
 from linebot import LineBotApi, WebhookHandler
 
@@ -53,7 +53,7 @@ line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_LONG_TOKEN')
 web_hook_handler = WebhookHandler(LINE['YOUR_CHANNEL_SECRET'])
 ```
 
-新增WebHook驗證功能
+新增 WebHook 驗證功能
 ```python
 from django.http import HttpResponse
 from linebot.exceptions import LineBotApiError
@@ -75,20 +75,20 @@ def bot(request):
 設定結果如下
 ![Response Configuration](https://i.imgur.com/tGOHjV6.png)
 
-設定完後便能啟動Server，將產生的網址填入[LINE Developers](https://developers.line.biz/console/) Messaging API中的webhook URL並點擊Verify，如成功便會跳出Success視窗
+設定完後便能啟動 Server，將產生的網址填入[LINE Developers](https://developers.line.biz/console/) Messaging API 中的 webhook URL 並點擊 Verify，如成功便會跳出 Success 視窗
 ![Success Dialog](https://i.imgur.com/7luO5nO.png)
 ::: tip
-Django使用虛擬環境執行且無固定IP之問題，推薦使用[ngrok](https://ngrok.com)
+Django 使用虛擬環境執行且無固定 IP 之問題，推薦使用[ngrok](https://ngrok.com)
 :::
 
 ## 建立Flex Message模板
-這邊選擇使用官方提供的[Flex Message Simulator](https://developers.line.biz/flex-simulator/)，中間可以進行元件的新增修改刪除，右邊則是可調整之元件屬性，而Showcase裡有官方所提供的數個模板可供套用，也可點擊View as JSON直接修改或取得模版之Json檔
+這邊選擇使用官方提供的[Flex Message Simulator](https://developers.line.biz/flex-simulator/)，中間可以進行元件的新增修改刪除，右邊則是可調整之元件屬性，而 Showcase 裡有官方所提供的數個模板可供套用，也可點擊 View as JSON 直接修改或取得模版之 Json 檔
 ![Flex Message Template](https://i.imgur.com/CBvsthB.png)
 
 
 ## 撰寫Line Bot API及結合Flex Message
 ::: tip
-以下皆以WhatToEat之功能為範例來做說明
+以下皆以 WhatToEat 之功能為範例來做說明
 :::
 
 目前只有用到其中幾種情況監聽一般訊息的`MessageEvent`、監聽追蹤的`FollowEvent`、監聽取消追蹤的`UnFollowEvent`及監聽按鈕回傳值的`PostbackEvent`
@@ -126,9 +126,9 @@ def handle_un_follow(event):
     return HttpResponse("OK")
 ```
 
-再來，就是比較需要注意的監聽按鈕回傳值`PostbackEvent`，在這邊可先利用剛剛的鸚鵡機器人傳送一個有button且type為postback的Flex Message至聊天室中，以下直接取用官方提供的模板進行測試
+再來，就是比較需要注意的監聽按鈕回傳值`PostbackEvent`，在這邊可先利用剛剛的鸚鵡機器人傳送一個有 button 且 type 為 postback 的 Flex Message 至聊天室中，以下直接取用官方提供的模板進行測試
 
-postback button中的action可自訂，但欄位不可作更改，alt_text欄位為聊天室之預覽訊息，將程式碼複製進前面所寫的`echo`功能中，並使之觸發
+postback button 中的 action 可自訂，但欄位不可作更改，`alt_text`欄位為聊天室之預覽訊息，將程式碼複製進前面所寫的`echo`功能中，並使之觸發
 ```python
 contents = {
   "type": "bubble",
@@ -251,10 +251,10 @@ line_bot_api.reply_message(event.reply_token,
     FlexSendMessage(alt_text='YOUR_ALT_TEXT', contents=contents))
 ```
 ::: tip
-如不清楚如何修改，可將以下Json值複製進[Flex Message Simulator](https://developers.line.biz/flex-simulator/)查看
+如不清楚如何修改，可將以下 Json 值複製進[Flex Message Simulator](https://developers.line.biz/flex-simulator/)查看
 :::
 
-點擊Flex Message具有postback type的按鈕，就會觸發監聽按鈕回傳值`PostbackEvent`，可在功能裡加入判斷回傳資料之if或是直接將資料print出來在terminal，確認資料是否正確
+點擊 Flex Message 具有 postback type 的按鈕，就會觸發監聽按鈕回傳值`PostbackEvent`，可在功能裡加入判斷回傳資料之 if 或是直接將資料 print 出來在 terminal，確認資料是否正確
 ```python
 @web_hook_handler.add(PostbackEvent)
 def post_back(event):
@@ -268,4 +268,4 @@ def post_back(event):
 
 
 ## 總結
-此篇文章只有大略介紹了一下常用的Line Bot API，可再自行作延伸，還有例如群發等API，詳細的資料可至[line-bot-sdk-python](https://github.com/line/line-bot-sdk-python)，裡面有各個API及資料內容的介紹，感謝您的閱讀。
+此篇文章只有大略介紹了一下常用的 Line Bot API，可再自行作延伸，還有例如群發等 API，詳細的資料可至[line-bot-sdk-python](https://github.com/line/line-bot-sdk-python)，裡面有各個 API 及資料內容的介紹，感謝您的閱讀。
