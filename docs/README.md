@@ -1,4 +1,4 @@
 ---
 home: true
-heroText: Henry Huang
+heroText: Lazy-assed Ninja
 ---

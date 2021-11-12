@@ -1,12 +1,21 @@
 module.exports = {
     theme: 'reco',
-    title: 'Henry Huang',
-    description: 'A battle is won by him who is firmly resolved to win it.',
+    title: 'Lazy-assed Ninja',
+    description: 'Good old days.',
     dest: 'docs/public',
     head: [
+        // On a mobile device, the search box can be zoomed in when focused, and scrolled left or right when not focused.
+        // This can be done by setting the meta.
+        ['meta',
+            {
+                name: 'viewport',
+                content: 'width=device-width,initial-scale=1,user-scalable=no'
+            }
+        ],
         ['link',
             {
-                rel: 'icon', href: '/h.png'
+                rel: 'icon',
+                href: '/icon.png'
             }
         ],
     ],
@@ -14,24 +23,52 @@ module.exports = {
         type: 'blog',
         author: 'Henry Huang',
         authorAvatar: '/avatar.jpeg',
-        // Search settings
         search: true,
         searchMaxSuggestions: 10,
-        // Auto generate side bar
         subSidebar: 'auto',
         sidebarDepth: 4,
         nav: [
             {
-                text: 'Home', link: '/', icon: 'reco-home'
+                text: 'Home',
+                link: '/',
+                icon: 'reco-home'
             },
             {
-                text: 'TimeLine', link: '/timeline/', icon: 'reco-date'
+                text: 'TimeLine',
+                link: '/timeline/',
+                icon: 'reco-date'
             },
+            {
+                text: 'Contact',
+                icon: 'reco-message',
+                items: [
+                    {
+                        icon: 'reco-mail',
+                        text: 'Email',
+                        link: 'mailto:henryhuang861219@gmail.com'
+                    },
+                    {
+                        icon: 'reco-github',
+                        text: 'GitHub',
+                        link: 'https://github.com/henryhuang1219'
+                    },
+                    {
+                        icon: 'reco-linkedin',
+                        text: 'LinkedIn',
+                        link: 'https://www.linkedin.com/in/henryhuang1219/'
+                    },
+                    {
+                        icon: 'reco-facebook',
+                        text: 'Facebook',
+                        link: 'https://www.facebook.com/henry.huang.9659/'
+                    }
+                ]
+            }
         ],
-        blogConfig: { // Blog configuration
+        blogConfig: {
             category: {
                 location: 2, // The position occupied in the navigation bar menu, default to 2
-                text: 'Blog' // Text default to "Category"
+                text: 'Category' // Text default to "Category"
             },
             tag: {
                 location: 3, // The position occupied in the navigation bar menu, default to 3
@@ -55,6 +92,14 @@ module.exports = {
                     link: "https://www.facebook.com/henry.huang.9659/"
                 }
             ]
+        },
+        vssueConfig: {
+            platform: 'github',
+            owner: 'henryhuang1219',
+            repo: 'henryhuang1219.github.io',
+            clientId: process.env.OAUTH_APP_CLIENT_ID,
+            clientSecret: process.env.OAUTH_APP_CLIENT_SECRET,
+            locale: 'en',
         },
         noFoundPageByTencent: false
     },
