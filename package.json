@@ -1,21 +1,23 @@
 {
   "name": "henry-huang",
-  "version": "1.8.2",
-  "description": "",
-  "main": "index.js",
-  "authors": {
+  "version": "0.9.0",
+  "description": "Blog & Technical Notes",
+  "license": "MIT",
+  "bugs": "https://github.com/henryhuang1219/VuePress-Blog/issues",
+  "repository": "https://github.com/henryhuang1219/VuePress-Blog",
+  "author": {
     "name": "Henry Huang",
     "email": "henryhuang861219@gmail.com"
   },
+  "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev docs --open --no-clear-screen",
+    "dev": "vuepress dev docs --no-clear-screen",
     "build": "vuepress build docs"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "vuepress": "^1.8.2"
   },
   "dependencies": {
     "vuepress-theme-reco": "^1.6.6"
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.2"
   }
 }

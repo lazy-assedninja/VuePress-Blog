@@ -1,5 +1,10 @@
-node_modules
-dist
-.idea
+# Mac OS
 .DS_Store
+
+# JetBrains IDE
+.idea/
+
+# VuePress
+docs/public/
+node_modules/
 yarn.lock
