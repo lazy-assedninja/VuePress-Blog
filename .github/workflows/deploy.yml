@@ -1,0 +1,45 @@
+name: Deploy GitHub Pages
+
+# Controls when the action will run.
+on:
+
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# jobs to build and deploy
+jobs:
+  build_and_deploy_blog:
+    name: Build and Deploy Blog
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+        env:
+          OAUTH_APP_CLIENT_ID: ${{ secrets.OAUTH_APP_CLIENT_ID }}
+          OAUTH_APP_CLIENT_SECRET: ${{ secrets.OAUTH_APP_CLIENT_SECRET }}
+        run: yarn install && yarn build
+
+      - name: Deploy To GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: master
+          folder: docs/public
+          token: ${{ secrets.ACCESS_TOKEN_FOR_GITHUB_PAGES }}
+          git-config-name: 'Lazy-assed Ninja'
+          repository-name: 'henryhuang1219/henryhuang1219.github.io'
