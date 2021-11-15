@@ -2,7 +2,7 @@
 title: GCP - Nginx 反向代理
 date: 2021-11-11
 tags:
- - Google cloud engine
+ - Google Cloud Platform
  - Nginx
  - MySQL
 categories:
