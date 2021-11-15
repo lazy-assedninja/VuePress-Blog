@@ -8,18 +8,18 @@ Powered by [vuepress-theme-reco](https://github.com/vuepress-reco/vuepress-theme
 
 ## Getting Started
 Install dependencies:
-```commandline
+```shell
 yarn install
 ```
 
 ## Build
 Build directory as a static site:
-```commandline
+```shell
 yarn build
 ```
 
 ## Run
 Serve the documentation site in the local server:
-```commandline
+```shell
 yarn dev
 ```

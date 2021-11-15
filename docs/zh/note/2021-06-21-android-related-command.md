@@ -14,11 +14,13 @@ Android 常用 Command 整合筆記。
 
 <!-- more -->
 
+
 ## ADB
 * 輸出裝置 logcat
   ```bash
   adb -d logcat > log.txt
   ```
+
 
 ## Test
 * Unit Test
@@ -30,6 +32,7 @@ Android 常用 Command 整合筆記。
   ```bash
   ./gradlew connectedAndroidTest
   ```
+
 
 ## APK
 * 打包 Debug APK
