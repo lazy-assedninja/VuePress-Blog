@@ -26,7 +26,7 @@ module.exports = {
         search: true,
         searchMaxSuggestions: 10,
         subSidebar: 'auto',
-        sidebarDepth: 4,
+        sidebarDepth: 2,
         nav: [
             {
                 text: 'Home',
@@ -108,4 +108,12 @@ module.exports = {
             lang: 'en-US'
         },
     },
+    plugins: [
+        [
+            '@vuepress/google-analytics',
+            {
+                'ga': process.env.MEASUREMENT_ID
+            }
+        ]
+    ]
 }
