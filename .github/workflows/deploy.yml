@@ -35,7 +35,7 @@ jobs:
         env:
           OAUTH_APP_CLIENT_ID: ${{ secrets.OAUTH_APP_CLIENT_ID }}
           OAUTH_APP_CLIENT_SECRET: ${{ secrets.OAUTH_APP_CLIENT_SECRET }}
-          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
+          TRACKING_ID: ${{ secrets.TRACKING_ID }}
         run: yarn install && yarn build
 
       - name: Deploy To GitHub Pages

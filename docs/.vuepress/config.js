@@ -112,7 +112,7 @@ module.exports = {
         [
             '@vuepress/google-analytics',
             {
-                'ga': process.env.MEASUREMENT_ID
+                'ga': process.env.TRACKING_ID
             }
         ]
     ]
