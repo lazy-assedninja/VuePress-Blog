@@ -24,6 +24,7 @@ module.exports = {
         author: 'Henry Huang',
         authorAvatar: '/avatar.jpeg',
         search: true,
+        startYear: '2021',
         searchMaxSuggestions: 10,
         subSidebar: 'auto',
         sidebarDepth: 2,

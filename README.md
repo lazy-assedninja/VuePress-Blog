@@ -19,6 +19,10 @@ yarn build
 ```
 
 ## Run
+If the Node version is higher than 16, you must enter this command first:
+```shell
+export NODE_OPTIONS=--openssl-legacy-provider
+```
 Serve the documentation site in the local server:
 ```shell
 yarn dev
